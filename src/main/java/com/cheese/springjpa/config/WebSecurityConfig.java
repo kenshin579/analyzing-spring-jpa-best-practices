@@ -14,11 +14,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**",
             "/swagger-ui.html",
             "/v2/api-docs",
+            "/h2-console/**",
             "/webjars/**"
     };
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.headers().frameOptions().sameOrigin(); //
+
         httpSecurity
                 // we don't need CSRF because our token is invulnerable
                 .csrf().disable()
